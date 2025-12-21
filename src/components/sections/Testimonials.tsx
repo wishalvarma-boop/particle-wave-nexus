@@ -3,7 +3,7 @@ import { Star } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: "wish.all transformed our digital presence. Our Google Ads ROAS went from 2x to 5x in just three months. They're not just running ads—they're building a growth machine.",
+    quote: "Wish.All transformed our digital presence. Our Google Ads ROAS went from 2x to 5x in just three months. They're not just running ads—they're building a growth machine.",
     author: 'Sarah Chen',
     role: 'CEO, TechFlow Solutions',
     rating: 5,
