@@ -57,6 +57,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        particle: {
+          bg: "hsl(var(--particle-bg))",
+          text: "hsl(var(--particle-text))",
+          accent: "hsl(var(--particle-accent))",
+          primary: "hsl(var(--particle-primary))",
+          muted: "hsl(var(--particle-muted) / 0.2)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -80,10 +87,21 @@ export default {
             height: "0",
           },
         },
+        "fade-in-up": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in-up": "fade-in-up 0.6s ease-out forwards",
       },
     },
   },
