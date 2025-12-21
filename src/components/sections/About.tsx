@@ -17,7 +17,7 @@ const About: React.FC = () => {
               </span>
             </h2>
             <p className="text-lg text-particle-text/60 mb-6 leading-relaxed">
-              At Wish.All, we believe every business deserves access to world-class paid media expertise. Founded by performance marketers with experience at top agencies and Fortune 500 brands, we bring enterprise-level strategies to ambitious businesses ready to scale.
+              At wish.all, we believe every business deserves access to world-class paid media expertise. Founded by performance marketers with experience at top agencies and Fortune 500 brands, we bring enterprise-level strategies to ambitious businesses ready to scale.
             </p>
             <p className="text-lg text-particle-text/60 mb-8 leading-relaxed">
               We're not just another agency—we're your growth partners. Every campaign we run is backed by rigorous testing, transparent reporting, and an obsession with results.
@@ -33,7 +33,7 @@ const About: React.FC = () => {
             <div className="aspect-square rounded-3xl bg-gradient-to-br from-[#4285F4]/20 via-[#1877F2]/10 to-transparent border border-particle-text/10 flex items-center justify-center">
               <div className="text-center space-y-4">
                 <div className="text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-particle-text to-particle-text/30">
-                  Wish.All
+                  wish.all
                 </div>
                 <p className="text-particle-text/40 text-lg">Your Growth. Our Mission.</p>
               </div>

@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
               <div className="w-10 h-10 bg-gradient-to-br from-[#4285F4] to-[#1877F2] rounded-full flex items-center justify-center">
                 <span className="font-bold text-white text-lg">W</span>
               </div>
-              <span className="text-particle-text font-bold text-xl">Wish.All</span>
+              <span className="text-particle-text font-bold text-xl">wish.all</span>
             </div>
             <p className="text-particle-text/50 text-sm leading-relaxed mb-6">
               Your trusted partner for paid growth. We help ambitious brands scale with Google Ads & Meta Ads.
@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-particle-text/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-particle-text/40 text-sm">
-            © {new Date().getFullYear()} Wish.All. All rights reserved.
+            © {new Date().getFullYear()} wish.all. All rights reserved.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-particle-text/40 hover:text-particle-text text-sm transition-colors">Privacy Policy</a>

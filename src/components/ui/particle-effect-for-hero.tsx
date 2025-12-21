@@ -311,7 +311,7 @@ const Navigation: React.FC = () => {
         <div className="w-10 h-10 bg-gradient-to-br from-[#4285F4] to-[#1877F2] rounded-full flex items-center justify-center">
           <span className="font-bold text-white text-lg">W</span>
         </div>
-        <span className="text-particle-text font-bold text-xl tracking-tight">Wish.All</span>
+        <span className="text-particle-text font-bold text-xl tracking-tight">wish.all</span>
       </div>
       
       <div className="hidden md:flex items-center gap-8 text-sm font-medium text-particle-text/70">
@@ -349,26 +349,6 @@ const Navigation: React.FC = () => {
 };
 
 const HeroContent: React.FC = () => {
-  const [showSmarter, setShowSmarter] = useState(false);
-  const [isExploding, setIsExploding] = useState(false);
-
-  useEffect(() => {
-    const explodeTimer = setTimeout(() => {
-      setIsExploding(true);
-    }, 2000);
-
-    const smarterTimer = setTimeout(() => {
-      setShowSmarter(true);
-    }, 2800);
-
-    return () => {
-      clearTimeout(explodeTimer);
-      clearTimeout(smarterTimer);
-    };
-  }, []);
-
-  const harderLetters = "Harder".split("");
-
   return (
     <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none px-4">
       <div className="max-w-5xl w-full text-center space-y-8">
@@ -380,36 +360,13 @@ const HeroContent: React.FC = () => {
         
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-particle-text tracking-tight leading-[1.1]">
           We Make Ads{' '}
-          <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] via-[#FBBC04] to-[#1877F2]">
-            {!showSmarter ? (
-              <span className="inline-flex">
-                {harderLetters.map((letter, index) => (
-                  <span
-                    key={index}
-                    className={`inline-block transition-all duration-700 ${
-                      isExploding
-                        ? 'opacity-0 scale-0'
-                        : 'opacity-100 scale-100'
-                    }`}
-                    style={{
-                      transitionDelay: isExploding ? `${index * 80}ms` : '0ms',
-                      transform: isExploding
-                        ? `translate(${(Math.random() - 0.5) * 200}px, ${(Math.random() - 0.5) * 200}px) rotate(${(Math.random() - 0.5) * 360}deg) scale(0)`
-                        : 'translate(0, 0) rotate(0deg) scale(1)',
-                    }}
-                  >
-                    {letter}
-                  </span>
-                ))}
-              </span>
-            ) : (
-              <span className="animate-scale-in inline-block">Smarter</span>
-            )}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] via-[#FBBC04] to-[#1877F2]">
+            Work Harder
           </span>
         </h1>
         
         <p className="max-w-2xl mx-auto text-lg md:text-xl text-particle-text/60 leading-relaxed">
-          Wish.All is your growth partner for paid media. We help ambitious brands scale with precision-targeted Google & Meta ad campaigns that deliver real ROI.
+          wish.all is your growth partner for paid media. We help ambitious brands scale with precision-targeted Google & Meta ad campaigns that deliver real ROI.
         </p>
 
         <div className="pt-6 flex flex-col sm:flex-row gap-4 justify-center pointer-events-auto">
