@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { MousePointer2, Info, ArrowRight } from 'lucide-react';
+import { MousePointer2, ArrowRight, Menu, X } from 'lucide-react';
 
 // --- Types ---
 
@@ -49,7 +49,6 @@ const randomRange = (min: number, max: number) => Math.random() * (max - min) + 
 const AntiGravityCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [debugInfo, setDebugInfo] = useState({ count: 0, fps: 0 });
   
   const particlesRef = useRef<Particle[]>([]);
   const backgroundParticlesRef = useRef<BackgroundParticle[]>([]);
@@ -94,8 +93,6 @@ const AntiGravityCanvas: React.FC = () => {
       });
     }
     backgroundParticlesRef.current = newBgParticles;
-
-    setDebugInfo(prev => ({ ...prev, count: particleCount + bgCount }));
   }, []);
 
   const animate = useCallback((time: number) => {
@@ -104,11 +101,7 @@ const AntiGravityCanvas: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const delta = time - lastTimeRef.current;
     lastTimeRef.current = time;
-    if (delta > 0) {
-        setDebugInfo(prev => ({ ...prev, fps: Math.round(1000 / delta) }));
-    }
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -305,64 +298,89 @@ const AntiGravityCanvas: React.FC = () => {
       onMouseLeave={handleMouseLeave}
     >
       <canvas ref={canvasRef} className="block w-full h-full" />
-      
-      <div className="absolute bottom-4 right-4 pointer-events-none text-xs text-particle-muted font-mono text-right">
-        <p>{debugInfo.count} entities</p>
-        <p>{debugInfo.fps} FPS</p>
-      </div>
     </div>
   );
 };
 
 const Navigation: React.FC = () => {
-    return (
-        <nav className="absolute top-0 left-0 w-full z-20 flex justify-between items-center p-6 md:p-8">
-            <div className="flex items-center space-x-2">
-                 <div className="w-8 h-8 bg-particle-text rounded-full flex items-center justify-center">
-                    <span className="font-bold text-particle-bg text-lg">G</span>
-                 </div>
-                 <span className="text-particle-text font-medium tracking-wide text-lg">Antigravity</span>
-            </div>
-            <div className="hidden md:flex space-x-8 text-sm font-medium text-particle-text/70">
-                <a href="#" className="hover:text-particle-text transition-colors">Experiments</a>
-                <a href="#" className="hover:text-particle-text transition-colors">Case Studies</a>
-                <a href="#" className="hover:text-particle-text transition-colors">About</a>
-            </div>
-            <button className="text-particle-text/80 hover:text-particle-text transition-colors">
-                <Info size={24} />
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <nav className="absolute top-0 left-0 w-full z-20 flex justify-between items-center p-6 md:p-8">
+      <div className="flex items-center gap-2">
+        <div className="w-10 h-10 bg-gradient-to-br from-[#4285F4] to-[#1877F2] rounded-full flex items-center justify-center">
+          <span className="font-bold text-white text-lg">W</span>
+        </div>
+        <span className="text-particle-text font-bold text-xl tracking-tight">wish.all</span>
+      </div>
+      
+      <div className="hidden md:flex items-center gap-8 text-sm font-medium text-particle-text/70">
+        <a href="#services" className="hover:text-particle-text transition-colors">Services</a>
+        <a href="#about" className="hover:text-particle-text transition-colors">About</a>
+        <a href="#testimonials" className="hover:text-particle-text transition-colors">Clients</a>
+        <button className="px-5 py-2.5 bg-particle-text text-particle-bg rounded-full font-semibold hover:opacity-90 transition-opacity">
+          Get Started
+        </button>
+      </div>
+
+      {/* Mobile Menu Button */}
+      <button 
+        className="md:hidden text-particle-text/80 hover:text-particle-text transition-colors"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+      </button>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="absolute top-full left-0 w-full bg-particle-bg/95 backdrop-blur-xl border-t border-particle-text/10 md:hidden">
+          <div className="flex flex-col p-6 gap-4">
+            <a href="#services" className="text-particle-text/70 hover:text-particle-text transition-colors py-2">Services</a>
+            <a href="#about" className="text-particle-text/70 hover:text-particle-text transition-colors py-2">About</a>
+            <a href="#testimonials" className="text-particle-text/70 hover:text-particle-text transition-colors py-2">Clients</a>
+            <button className="mt-2 px-5 py-3 bg-particle-text text-particle-bg rounded-full font-semibold">
+              Get Started
             </button>
-        </nav>
-    )
-}
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+};
 
 const HeroContent: React.FC = () => {
-    return (
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none px-4">
-            <div className="max-w-4xl w-full text-center space-y-8">
-                <div className="inline-block animate-fade-in-up">
-                    <span className="py-1 px-3 border border-particle-text/20 rounded-full text-xs font-mono text-particle-text/60 tracking-widest uppercase bg-particle-text/5 backdrop-blur-sm">
-                        Experimental Interaction
-                    </span>
-                </div>
-                
-                <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-particle-text to-particle-text/40 tracking-tighter mix-blend-difference">
-                    Zero<br/>Gravity
-                </h1>
-                
-                <p className="max-w-2xl mx-auto text-lg md:text-xl text-particle-text/60 font-light leading-relaxed">
-                    Experience the fluidity of data. A WebGL-inspired particle simulation running entirely on 2D Canvas for maximum compatibility and performance.
-                </p>
-
-                <div className="pt-8 pointer-events-auto">
-                    <button className="group relative inline-flex items-center gap-3 px-8 py-4 bg-particle-text text-particle-bg rounded-full font-bold tracking-wide overflow-hidden transition-transform hover:scale-105 active:scale-95">
-                        <span className="relative z-10">Start Experience</span>
-                        <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
-                        <div className="absolute inset-0 bg-particle-accent transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out opacity-10"></div>
-                    </button>
-                </div>
-            </div>
+  return (
+    <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none px-4">
+      <div className="max-w-5xl w-full text-center space-y-8">
+        <div className="inline-block animate-fade-in-up">
+          <span className="py-1.5 px-4 border border-particle-text/20 rounded-full text-xs font-medium text-particle-text/60 tracking-widest uppercase bg-particle-text/5 backdrop-blur-sm">
+            Google Ads • Meta Ads • Paid Growth
+          </span>
         </div>
-    );
+        
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-particle-text tracking-tight leading-[1.1]">
+          We Make Ads{' '}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] via-[#FBBC04] to-[#1877F2]">
+            Work Harder
+          </span>
+        </h1>
+        
+        <p className="max-w-2xl mx-auto text-lg md:text-xl text-particle-text/60 leading-relaxed">
+          wish.all is your growth partner for paid media. We help ambitious brands scale with precision-targeted Google & Meta ad campaigns that deliver real ROI.
+        </p>
+
+        <div className="pt-6 flex flex-col sm:flex-row gap-4 justify-center pointer-events-auto">
+          <button className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#4285F4] to-[#1877F2] text-white rounded-full font-bold tracking-wide overflow-hidden transition-transform hover:scale-105 active:scale-95">
+            <span className="relative z-10">Start Growing Today</span>
+            <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+          </button>
+          <button className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-particle-text/30 text-particle-text rounded-full font-bold tracking-wide hover:bg-particle-text/10 transition-all">
+            <span>View Case Studies</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 // --- Main Export ---
@@ -375,8 +393,8 @@ export default function ParticleEffectHero() {
       <HeroContent />
       
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-particle-text/30 animate-pulse pointer-events-none">
-         <span className="text-[10px] uppercase tracking-[0.2em]">Interact</span>
-         <MousePointer2 size={16} />
+        <span className="text-[10px] uppercase tracking-[0.2em]">Scroll to Explore</span>
+        <MousePointer2 size={16} />
       </div>
     </div>
   );
