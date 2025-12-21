@@ -38,7 +38,7 @@ const CTA: React.FC = () => {
           </div>
 
           <p className="mt-8 text-particle-text/40 text-sm">
-            Join 150+ brands already scaling with wish.all
+            Join 150+ brands already scaling with Wish.All
           </p>
         </div>
       </div>

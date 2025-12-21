@@ -311,7 +311,7 @@ const Navigation: React.FC = () => {
         <div className="w-10 h-10 bg-gradient-to-br from-[#4285F4] to-[#1877F2] rounded-full flex items-center justify-center">
           <span className="font-bold text-white text-lg">W</span>
         </div>
-        <span className="text-particle-text font-bold text-xl tracking-tight">wish.all</span>
+        <span className="text-particle-text font-bold text-xl tracking-tight">Wish.All</span>
       </div>
       
       <div className="hidden md:flex items-center gap-8 text-sm font-medium text-particle-text/70">
@@ -366,7 +366,7 @@ const HeroContent: React.FC = () => {
         </h1>
         
         <p className="max-w-2xl mx-auto text-lg md:text-xl text-particle-text/60 leading-relaxed">
-          wish.all is your growth partner for paid media. We help ambitious brands scale with precision-targeted Google & Meta ad campaigns that deliver real ROI.
+          Wish.All is your growth partner for paid media. We help ambitious brands scale with precision-targeted Google & Meta ad campaigns that deliver real ROI.
         </p>
 
         <div className="pt-6 flex flex-col sm:flex-row gap-4 justify-center pointer-events-auto">
