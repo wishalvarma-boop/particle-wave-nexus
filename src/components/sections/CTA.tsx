@@ -1,7 +1,10 @@
 import React from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { useContactDialog } from '@/contexts/ContactDialogContext';
 
 const CTA: React.FC = () => {
+  const { openDialog } = useContactDialog();
+
   return (
     <section className="relative py-24 md:py-32 bg-gradient-to-b from-[#0a0a12] to-particle-bg overflow-hidden">
       {/* Background glow effects */}
@@ -28,11 +31,17 @@ const CTA: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#4285F4] to-[#1877F2] text-white rounded-full font-bold text-lg hover:opacity-90 transition-all duration-300 hover:scale-105 active:scale-95">
+            <button 
+              onClick={openDialog}
+              className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#4285F4] to-[#1877F2] text-white rounded-full font-bold text-lg hover:opacity-90 transition-all duration-300 hover:scale-105 active:scale-95"
+            >
               <span>Get Your Free Audit</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-particle-text/30 text-particle-text rounded-full font-bold text-lg hover:bg-particle-text/10 transition-all duration-300">
+            <button 
+              onClick={openDialog}
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-particle-text/30 text-particle-text rounded-full font-bold text-lg hover:bg-particle-text/10 transition-all duration-300"
+            >
               <span>Schedule a Call</span>
             </button>
           </div>
