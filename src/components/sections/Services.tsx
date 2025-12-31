@@ -1,5 +1,6 @@
 import React from 'react';
 import { Search, Target, TrendingUp, BarChart3, Zap, Users } from 'lucide-react';
+import { useContactDialog } from '@/contexts/ContactDialogContext';
 
 const services = [
   {
@@ -35,6 +36,8 @@ const services = [
 ];
 
 const Services: React.FC = () => {
+  const { openDialog } = useContactDialog();
+
   return (
     <section id="services" className="relative py-24 md:py-32 bg-particle-bg">
       <div className="container mx-auto px-6 md:px-12">
@@ -57,7 +60,8 @@ const Services: React.FC = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="group relative p-8 rounded-2xl border border-particle-text/10 bg-particle-text/5 backdrop-blur-sm hover:border-particle-text/30 hover:bg-particle-text/10 transition-all duration-500"
+              onClick={openDialog}
+              className="group relative p-8 rounded-2xl border border-particle-text/10 bg-particle-text/5 backdrop-blur-sm hover:border-particle-text/30 hover:bg-particle-text/10 transition-all duration-500 cursor-pointer"
             >
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4285F4] to-[#1877F2] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <service.icon className="w-6 h-6 text-white" />

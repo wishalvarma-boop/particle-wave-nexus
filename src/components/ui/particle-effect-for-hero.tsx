@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { MousePointer2, ArrowRight, Menu, X } from 'lucide-react';
+import { useContactDialog } from '@/contexts/ContactDialogContext';
 
 // --- Types ---
 
@@ -304,6 +305,7 @@ const AntiGravityCanvas: React.FC = () => {
 
 const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { openDialog } = useContactDialog();
 
   return (
     <nav className="absolute top-0 left-0 w-full z-20 flex justify-between items-center p-6 md:p-8">
@@ -318,7 +320,10 @@ const Navigation: React.FC = () => {
         <a href="#services" className="hover:text-particle-text transition-colors">Services</a>
         <a href="#about" className="hover:text-particle-text transition-colors">About</a>
         <a href="#testimonials" className="hover:text-particle-text transition-colors">Clients</a>
-        <button className="px-5 py-2.5 bg-particle-text text-particle-bg rounded-full font-semibold hover:opacity-90 transition-opacity">
+        <button 
+          onClick={openDialog}
+          className="px-5 py-2.5 bg-particle-text text-particle-bg rounded-full font-semibold hover:opacity-90 transition-opacity"
+        >
           Get Started
         </button>
       </div>
@@ -338,7 +343,10 @@ const Navigation: React.FC = () => {
             <a href="#services" className="text-particle-text/70 hover:text-particle-text transition-colors py-2">Services</a>
             <a href="#about" className="text-particle-text/70 hover:text-particle-text transition-colors py-2">About</a>
             <a href="#testimonials" className="text-particle-text/70 hover:text-particle-text transition-colors py-2">Clients</a>
-            <button className="mt-2 px-5 py-3 bg-particle-text text-particle-bg rounded-full font-semibold">
+            <button 
+              onClick={openDialog}
+              className="mt-2 px-5 py-3 bg-particle-text text-particle-bg rounded-full font-semibold"
+            >
               Get Started
             </button>
           </div>
@@ -349,6 +357,8 @@ const Navigation: React.FC = () => {
 };
 
 const HeroContent: React.FC = () => {
+  const { openDialog } = useContactDialog();
+
   return (
     <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none px-4">
       <div className="max-w-5xl w-full text-center space-y-8">
@@ -370,11 +380,17 @@ const HeroContent: React.FC = () => {
         </p>
 
         <div className="pt-6 flex flex-col sm:flex-row gap-4 justify-center pointer-events-auto">
-          <button className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#4285F4] to-[#1877F2] text-white rounded-full font-bold tracking-wide overflow-hidden transition-transform hover:scale-105 active:scale-95">
+          <button 
+            onClick={openDialog}
+            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#4285F4] to-[#1877F2] text-white rounded-full font-bold tracking-wide overflow-hidden transition-transform hover:scale-105 active:scale-95"
+          >
             <span className="relative z-10">Start Growing Today</span>
             <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
           </button>
-          <button className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-particle-text/30 text-particle-text rounded-full font-bold tracking-wide hover:bg-particle-text/10 transition-all">
+          <button 
+            onClick={openDialog}
+            className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-particle-text/30 text-particle-text rounded-full font-bold tracking-wide hover:bg-particle-text/10 transition-all"
+          >
             <span>View Case Studies</span>
           </button>
         </div>
