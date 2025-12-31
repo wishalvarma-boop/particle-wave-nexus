@@ -10,6 +10,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 
 interface ContactDialogProps {
   open: boolean;
@@ -21,16 +23,32 @@ const ContactDialog: React.FC<ContactDialogProps> = ({ open, onOpenChange }) => 
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (name && email) {
-      setSubmitted(true);
-      setTimeout(() => {
-        setSubmitted(false);
-        setName('');
-        setEmail('');
-        onOpenChange(false);
-      }, 2000);
+      setIsLoading(true);
+      try {
+        const { error } = await supabase.functions.invoke('send-lead-email', {
+          body: { name, email },
+        });
+
+        if (error) throw error;
+
+        setSubmitted(true);
+        setTimeout(() => {
+          setSubmitted(false);
+          setName('');
+          setEmail('');
+          onOpenChange(false);
+        }, 2000);
+      } catch (error: any) {
+        console.error('Error sending lead:', error);
+        toast.error('Something went wrong. Please try again.');
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -83,10 +101,11 @@ const ContactDialog: React.FC<ContactDialogProps> = ({ open, onOpenChange }) => 
             </div>
             <Button 
               type="submit" 
+              disabled={isLoading}
               className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 group"
             >
-              Get Started
-              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              {isLoading ? 'Sending...' : 'Get Started'}
+              {!isLoading && <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />}
             </Button>
           </form>
         )}
