@@ -1,7 +1,11 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useContactDialog } from '@/contexts/ContactDialogContext';
 
 const Footer: React.FC = () => {
+  const { openDialog } = useContactDialog();
+
   return (
     <footer className="bg-[#050508] border-t border-particle-text/10 py-16 md:py-20">
       <div className="container mx-auto px-6 md:px-12">
@@ -18,13 +22,13 @@ const Footer: React.FC = () => {
               Your trusted partner for paid growth. We help ambitious brands scale with Google Ads & Meta Ads.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full border border-particle-text/20 flex items-center justify-center text-particle-text/60 hover:text-particle-text hover:border-particle-text/40 transition-colors">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-particle-text/20 flex items-center justify-center text-particle-text/60 hover:text-particle-text hover:border-particle-text/40 transition-colors">
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-particle-text/20 flex items-center justify-center text-particle-text/60 hover:text-particle-text hover:border-particle-text/40 transition-colors">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-particle-text/20 flex items-center justify-center text-particle-text/60 hover:text-particle-text hover:border-particle-text/40 transition-colors">
                 <Twitter className="w-4 h-4" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-particle-text/20 flex items-center justify-center text-particle-text/60 hover:text-particle-text hover:border-particle-text/40 transition-colors">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-particle-text/20 flex items-center justify-center text-particle-text/60 hover:text-particle-text hover:border-particle-text/40 transition-colors">
                 <Instagram className="w-4 h-4" />
               </a>
             </div>
@@ -34,11 +38,11 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-particle-text font-semibold mb-4">Services</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">Google Ads Management</a></li>
-              <li><a href="#" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">Meta Ads Campaigns</a></li>
-              <li><a href="#" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">Performance Analytics</a></li>
-              <li><a href="#" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">Conversion Optimization</a></li>
-              <li><a href="#" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">Growth Strategy</a></li>
+              <li><a href="/#services" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">Google Ads Management</a></li>
+              <li><a href="/#services" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">Meta Ads Campaigns</a></li>
+              <li><a href="/#services" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">Performance Analytics</a></li>
+              <li><a href="/#services" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">Conversion Optimization</a></li>
+              <li><a href="/#services" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">Growth Strategy</a></li>
             </ul>
           </div>
 
@@ -46,11 +50,11 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-particle-text font-semibold mb-4">Company</h4>
             <ul className="space-y-3">
-              <li><a href="#about" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">About Us</a></li>
-              <li><a href="#" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">Case Studies</a></li>
-              <li><a href="#" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">Blog</a></li>
-              <li><a href="#" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">Careers</a></li>
-              <li><a href="#" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">Contact</a></li>
+              <li><a href="/#about" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">About Us</a></li>
+              <li><a href="/#testimonials" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">Testimonials</a></li>
+              <li><a href="/#stats" className="text-particle-text/50 hover:text-particle-text transition-colors text-sm">Our Results</a></li>
+              <li><button onClick={openDialog} className="text-particle-text/50 hover:text-particle-text transition-colors text-sm text-left">Careers</button></li>
+              <li><button onClick={openDialog} className="text-particle-text/50 hover:text-particle-text transition-colors text-sm text-left">Contact</button></li>
             </ul>
           </div>
 
@@ -80,8 +84,8 @@ const Footer: React.FC = () => {
             © {new Date().getFullYear()} Wish.All. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-particle-text/40 hover:text-particle-text text-sm transition-colors">Privacy Policy</a>
-            <a href="#" className="text-particle-text/40 hover:text-particle-text text-sm transition-colors">Terms of Service</a>
+            <Link to="/privacy-policy" className="text-particle-text/40 hover:text-particle-text text-sm transition-colors">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="text-particle-text/40 hover:text-particle-text text-sm transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
